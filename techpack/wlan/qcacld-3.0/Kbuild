@@ -2,7 +2,12 @@
 # an external module.  Determine which mechanism is being used
 
 TARGET_BUILD_VARIANT := user
-
+WLAN_PROFILE=kiwi_v2
+DYNAMIC_SINGLE_CHIP=kiwi_v2
+MODNAME=qca_cld3_kiwi_v2
+DEVNAME=kiwi_v2
+BOARD_PLATFORM=kalama
+WLAN_CTRL_NAME=wlan
 
 MODNAME ?= wlan
 WLAN_COMMON_ROOT ?= cmn
