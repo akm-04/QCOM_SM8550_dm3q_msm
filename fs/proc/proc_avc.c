@@ -40,6 +40,7 @@ int __init sec_avc_log_init(void)
 	sec_avc_log_ptr = sec_avc_log_mag + 4;
 	sec_avc_log_buf = (char *)(sec_avc_log_mag + 8);
 
+	
 	if (*sec_avc_log_mag != LOG_MAGIC) {
 		pr_info("%s: no old log found\n", __func__);
 		*sec_avc_log_ptr = 0;
@@ -131,17 +132,26 @@ static ssize_t sec_avc_log_read(struct file *file, char __user *buf,
 	return count;
 }
 
-static const struct file_operations avc_msg_file_ops = {
-	.owner = THIS_MODULE,
-	.read = sec_avc_log_read,
-	.write = sec_avc_log_write,
-	.llseek = generic_file_llseek,
+static const struct proc_ops avc_msg_file_ops = {
+	//.owner = THIS_MODULE,
+	.proc_read = sec_avc_log_read,
+	.proc_write = sec_avc_log_write,
+	.proc_lseek = generic_file_llseek,
 };
 
+/*
+static const struct proc_ops alignment_proc_ops = {
+	.proc_open	= alignment_proc_open,
+	.proc_read	= seq_read,
+	.proc_lseek	= seq_lseek,
+	.proc_release	= single_release,
+	.proc_write	= alignment_proc_write,
+};
+*/
 static int __init sec_avc_log_late_init(void)
 {
 	struct proc_dir_entry *entry;
-
+	
 	if (sec_avc_log_buf == NULL) {
 		pr_err("%s: sec_avc_log_buf not initialized.\n", __func__);
 		return 0;
@@ -154,6 +164,7 @@ static int __init sec_avc_log_late_init(void)
 	}
 
 	proc_set_size(entry, sec_avc_log_size);
+	
 	return 0;
 }
 
