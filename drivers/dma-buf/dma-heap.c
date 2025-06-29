@@ -543,6 +543,8 @@ long try_get_dma_heap_pool_size_kb(void)
 	return (long)(total_pool_size / 1024);
 }
 
+extern void dma_heap_trace_init(void);
+
 static int dma_heap_init(void)
 {
 	int ret;
@@ -561,6 +563,8 @@ static int dma_heap_init(void)
 		goto err_class;
 	}
 	dma_heap_class->devnode = dma_heap_devnode;
+
+	dma_heap_trace_init();
 
 	return 0;
 
