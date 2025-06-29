@@ -886,6 +886,7 @@ static inline pte_t ptep_get_and_clear(struct mm_struct *mm,
 	set_pte(ptep, zero_pte);
 	return old;
 #else
+	READ_ONCE(*ptep);
 	return __pte(xchg_relaxed(&pte_val(*ptep), 0));
 #endif
 }
