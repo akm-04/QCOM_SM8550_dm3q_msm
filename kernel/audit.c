@@ -75,19 +75,13 @@
 #define AUDIT_INITIALIZED	1
 static int	audit_initialized = AUDIT_UNINITIALIZED;
 
-// [ SEC_SELINUX_PORTING_COMMON
-u32		audit_enabled = AUDIT_ON;
-bool		audit_ever_enabled = !!AUDIT_ON;
-// ] SEC_SELINUX_PORTING_COMMON
+u32		audit_enabled = AUDIT_OFF;
+bool		audit_ever_enabled = !!AUDIT_OFF;
 
 EXPORT_SYMBOL_GPL(audit_enabled);
 
 /* Default state when kernel boots without any parameters. */
-// [ SEC_SELINUX_PORTING_COMMON
-// Samsung Change Value from AUDIT_OFF to AUDIT_ON
-static u32	audit_default = AUDIT_ON;
-// ] SEC_SELINUX_PORTING_COMMON
-
+static u32	audit_default = AUDIT_OFF;
 
 /* If auditing cannot proceed, audit_failure selects what happens. */
 static u32	audit_failure = AUDIT_FAIL_PRINTK;
@@ -817,7 +811,6 @@ retry:
 				sec_avc_log("%s\n", data);
 #endif
 // ] SEC_SELINUX_PORTING_COMMON
-			/* it worked - drop the extra reference and continue */
 			/* skb sent - drop the extra reference and continue */
 			consume_skb(skb);
 			failed = 0;
