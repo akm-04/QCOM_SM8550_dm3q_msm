@@ -75,6 +75,9 @@
 
 #include "binder_internal.h"
 #include "binder_trace.h"
+
+int system_server_pid = 0;
+
 #include <trace/hooks/binder.h>
 
 static HLIST_HEAD(binder_deferred_list);
@@ -1878,7 +1881,7 @@ static size_t binder_get_object(struct binder_proc *proc,
 
 	read_size = min_t(size_t, sizeof(*object), buffer->data_size - offset);
 	if (offset > buffer->data_size || read_size < sizeof(*hdr) ||
-	    !IS_ALIGNED(offset, sizeof(u32)))
+		!IS_ALIGNED(offset, sizeof(u32)))
 		return 0;
 
 	if (u) {
@@ -2805,6 +2808,46 @@ static int binder_translate_fd_array(struct list_head *pf_head,
 	return 0;
 }
 
+// [ @SystemFW
+static void print_binder_proc_inner(struct binder_proc *proc) 
+{
+	struct rb_node *pn;
+	struct binder_thread *p_thread;
+	struct binder_transaction *t;
+	struct binder_buffer *buffer;
+	uint32_t cnt = 1; 
+
+	binder_inner_proc_lock(proc);
+	for (pn = rb_first(&proc->threads); pn != NULL; pn = rb_next(pn)) {
+		p_thread = rb_entry(pn, struct binder_thread, rb_node);
+		t = p_thread->transaction_stack;
+		if (t) {
+			spin_lock(&t->lock);  
+			if (t->from != p_thread && t->to_thread == p_thread) { //incoming transaction
+				buffer = t->buffer;
+				if (buffer != NULL) {
+					pr_info("[%d] from %d:%d to %d:%d size %zd:%zd\n",
+							cnt, t->from ? t->from->proc->pid : 0,
+							t->from ? t->from->pid : 0,
+							t->to_proc ? t->to_proc->pid : 0,
+							t->to_thread ? t->to_thread->pid : 0,
+							buffer->data_size, buffer->offsets_size);
+				} else {
+					pr_info("[%d] from %d:%d to %d:%d\n",
+							cnt, t->from ? t->from->proc->pid : 0,
+							t->from ? t->from->pid : 0,
+							t->to_proc ? t->to_proc->pid : 0,
+							t->to_thread ? t->to_thread->pid : 0);
+				}
+				cnt++;
+			}
+			spin_unlock(&t->lock);
+		}
+	}
+	binder_inner_proc_unlock(proc);
+}
+// ] @SystemFW
+
 static int binder_fixup_parent(struct list_head *pf_head,
 			       struct binder_transaction *t,
 			       struct binder_thread *thread,
@@ -3397,6 +3440,13 @@ static void binder_transaction(struct binder_proc *proc,
 			BR_DEAD_REPLY : BR_FAILED_REPLY;
 		return_error_line = __LINE__;
 		t->buffer = NULL;
+		// [ @SystemFW
+		if (return_error_param == -ENOSPC) {
+			mutex_lock(&binder_procs_lock);
+			print_binder_proc_inner(target_proc);
+			mutex_unlock(&binder_procs_lock);
+		}
+		// ] @SystemFW
 		goto err_binder_alloc_buf_failed;
 	}
 	if (secctx) {
@@ -5638,6 +5688,7 @@ static bool binder_txns_pending_ilocked(struct binder_proc *proc)
 
 static void binder_add_freeze_work(struct binder_proc *proc, bool is_frozen)
 {
+	struct binder_node *prev = NULL;
 	struct rb_node *n;
 	struct binder_ref *ref;
 
@@ -5646,7 +5697,10 @@ static void binder_add_freeze_work(struct binder_proc *proc, bool is_frozen)
 		struct binder_node *node;
 
 		node = rb_entry(n, struct binder_node, rb_node);
+		binder_inc_node_tmpref_ilocked(node);
 		binder_inner_proc_unlock(proc);
+		if (prev)
+			binder_put_node(prev);
 		binder_node_lock(node);
 		hlist_for_each_entry(ref, &node->refs, node_entry) {
 			/*
@@ -5672,10 +5726,15 @@ static void binder_add_freeze_work(struct binder_proc *proc, bool is_frozen)
 			}
 			binder_inner_proc_unlock(ref->proc);
 		}
+		prev = node;
 		binder_node_unlock(node);
 		binder_inner_proc_lock(proc);
+		if (proc->is_dead)
+			break;
 	}
 	binder_inner_proc_unlock(proc);
+	if (prev)
+		binder_put_node(prev);
 }
 
 static int binder_ioctl_freeze(struct binder_freeze_info *info,
@@ -5967,6 +6026,15 @@ static long binder_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		binder_inner_proc_unlock(proc);
 		break;
 	}
+	// [ @SystemFW
+	case BINDER_SET_SYSTEM_SERVER_PID: {
+		if (copy_from_user(&system_server_pid, ubuf, sizeof(system_server_pid))) {
+			ret = -EINVAL;
+			goto err;
+		}
+		break;
+	}
+	// ] @SystemFW
 	default:
 		ret = -EINVAL;
 		goto err;
