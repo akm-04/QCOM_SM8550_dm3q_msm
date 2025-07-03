@@ -65,11 +65,6 @@ SRC_WIDE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adap
 SRC_UW_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_imx564.h
 SRC_TELE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5k3k1.h
 SRC_FRONT_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5k3lu.h
-else ifeq ($(CONFIG_SEC_DM3Q_PROJECT), y)
-SRC_WIDE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5khp2.h
-SRC_UW_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_imx564.h
-SRC_TELE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_imx754.h
-SRC_FRONT_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5k3lu.h
 else ifeq ($(CONFIG_SEC_Q5Q_PROJECT), y)
 SRC_WIDE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5kgn3.h
 SRC_UW_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_imx258.h
@@ -81,6 +76,12 @@ SRC_WIDE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adap
 SRC_UW_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_imx258_b5.h
 SRC_FRONT_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5k3j1.h
 endif
+
+# Force dm3q
+SRC_WIDE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5khp2.h
+SRC_UW_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_imx564.h
+SRC_TELE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_imx754.h
+SRC_FRONT_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/adaptive_mipi/cam_sensor_adaptive_mipi_s5k3lu.h
 
 DST_WIDE_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/cam_sensor_adaptive_mipi_wide.h
 DST_UW_FILES = $(CAMERA_KERNEL_PATH)/drivers/cam_sensor_module/cam_sensor/cam_sensor_adaptive_mipi_uw.h

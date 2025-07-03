@@ -82,7 +82,7 @@ void cam_soc_bus_client_unregister(void **client);
 
 #else
 
-static const char *cam_soc_bus_path_data_to_str(enum cam_soc_bus_path_data bus_path_data)
+static __maybe_unused const char *cam_soc_bus_path_data_to_str(enum cam_soc_bus_path_data bus_path_data)
 {
 	return NULL;
 }
