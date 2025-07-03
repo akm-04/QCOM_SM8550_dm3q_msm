@@ -62,7 +62,7 @@
 
 unsigned char g_u8_m_buf[2][128];
 unsigned char g_u8_ini_flash[0x400];
-struct raydium_ts_data *ts;
+static struct raydium_ts_data *ts;
 unsigned char g_u8_mute_i2c_err_log;
 
 
