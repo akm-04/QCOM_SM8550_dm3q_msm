@@ -412,7 +412,7 @@ int cam_sensor_wait_otp_mode(struct cam_sensor_ctrl_t *s_ctrl)
 	return rc;
 }
 
-static int cam_bpc_match_crc()
+static int cam_bpc_match_crc(void)
 {
 	uint32_t calculated_crc = 0x0;
 	uint32_t check_sum_crc = 0x0;
@@ -1181,7 +1181,7 @@ int cam_sensor_post_apply_settings(
 {
 	int rc = 0;
 #if defined(CONFIG_SENSOR_RETENTION) && defined(CONFIG_SEC_DM3Q_PROJECT)
-	uint32_t sensor_id = s_ctrl->sensordata->slave_info.sensor_id;
+	__maybe_unused uint32_t sensor_id = s_ctrl->sensordata->slave_info.sensor_id;
 #endif
 
 	switch (opcode) {
