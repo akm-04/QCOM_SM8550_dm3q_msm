@@ -6676,8 +6676,7 @@ CONFIG_SEC_SNVM_WAKELOCK_METHOD=0
 # CONFIG_TOUCHSCREEN_STM is not set
 # CONFIG_TOUCHSCREEN_STM_SPI is not set
 # CONFIG_MFD_S2MPB02 is not set
-CONFIG_NGKSM=y
-CONFIG_NGKPAD=y
+# CONFIG_NGKSM is not set
 # end of Device Drivers
 
 #
@@ -7002,9 +7001,9 @@ CONFIG_INTEGRITY_AUDIT=y
 CONFIG_DEFAULT_SECURITY_SELINUX=y
 # CONFIG_DEFAULT_SECURITY_DAC is not set
 CONFIG_LSM="landlock,lockdown,yama,loadpin,safesetid,integrity,selinux,smack,tomoyo,apparmor,bpf"
-CONFIG_DDAR=y
+# CONFIG_DDAR is not set
 # CONFIG_SDP_KEY_DUMP is not set
-CONFIG_KZT=y
+# CONFIG_KZT is not set
 
 #
 # Kernel hardening options
