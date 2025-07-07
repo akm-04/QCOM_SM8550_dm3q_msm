@@ -40,6 +40,16 @@ static bool completed;
  * You can also use this as an ignorelist.
  */
 static const __initconst char * const blacklist[] = {
+	"f_fs_ipc_log",
+	"msm_show_resume_irq",
+	"phy_qcom_ufs_qmp_v4",
+	"phy_qcom_ufs_qmp_v4_khaje",
+	"phy_qcom_ufs_qmp_v4_kona",
+	"phy_qcom_ufs_qmp_v4_lahaina",
+	"phy_qcom_ufs_qmp_v4_waipio",
+	"phy-qcom-ufs-qmp-v4-kalama",
+	"phy-qcom-ufs-qrbtc-sdm845",
+	"phy-qcom-ufs",
 	NULL
 };
 
@@ -50,6 +60,8 @@ static const __initconst char * const blacklist[] = {
  * Add them here.
  */
 static const __initconst char * const deferred_list[] = {
+	"spss_utils",
+	"ns",
 	NULL
 };
 
