@@ -261,7 +261,7 @@ extern bool initcall_debug;
 
 #if defined(CONFIG_LAZY_INITCALL) && (defined(MODULE) || defined(LAZY_INITCALL_INTERNAL))
 enum lazy_initcall_type {
-	NORMAL,
+	LAZY_NORMAL,
 	DEFERRED
 };
 
