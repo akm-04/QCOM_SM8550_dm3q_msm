@@ -253,7 +253,7 @@ source "drivers/sec_panel_notifier/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NO
 source "drivers/net/dropdump/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/usb/common/vbus_notifier/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/battery/charger/max77705_charger/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
-source "drivers/sti/common/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
+#source "drivers/sti/common/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/input/air/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/battery/core/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/vibrator/common/inputff/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
@@ -265,7 +265,7 @@ source "drivers/fingerprint/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMI
 source "drivers/firmware/cirrus/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/input/input_boost/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/usb/typec/common/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
-source "drivers/sti/abc/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
+#source "drivers/sti/abc/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/battery/charger/pca9481_charger/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/vibrator/cs/cs40l26/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
 source "drivers/input/misc/hall/Kconfig" # ADDED BY LEGO AUTOMATICALLY: DO NOT SUBMIT
