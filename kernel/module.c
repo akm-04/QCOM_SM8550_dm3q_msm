@@ -104,6 +104,8 @@ static bool completed;
  *   – The name must match what userspace uses in insmod (MODULE_NAME without “.ko”).
  */
 static const __initconst char * const targets_list[] = {
+	"sched_walt",
+	"qcom_cpufreq_hw",
 	NULL
 };
 
