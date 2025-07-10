@@ -831,8 +831,7 @@ CONFIG_MODULE_COMPRESS_NONE=y
 # CONFIG_MODULE_COMPRESS_ZSTD is not set
 # CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS is not set
 CONFIG_MODPROBE_PATH="/sbin/modprobe"
-CONFIG_TRIM_UNUSED_KSYMS=y
-CONFIG_UNUSED_KSYMS_WHITELIST="abi_symbollist.raw"
+# CONFIG_TRIM_UNUSED_KSYMS is not set
 CONFIG_MODULES_TREE_LOOKUP=y
 CONFIG_BLOCK=y
 CONFIG_BLK_RQ_ALLOC_TIME=y
@@ -2551,6 +2550,8 @@ CONFIG_WLAN=y
 # CONFIG_WLAN_VENDOR_MARVELL is not set
 # CONFIG_WLAN_VENDOR_MEDIATEK is not set
 CONFIG_WLAN_VENDOR_MICROCHIP=y
+# CONFIG_WILC1000_SDIO is not set
+# CONFIG_WILC1000_SPI is not set
 # CONFIG_WLAN_VENDOR_RALINK is not set
 # CONFIG_WLAN_VENDOR_REALTEK is not set
 # CONFIG_WLAN_VENDOR_RSI is not set
@@ -2558,6 +2559,9 @@ CONFIG_WLAN_VENDOR_MICROCHIP=y
 # CONFIG_WLAN_VENDOR_TI is not set
 # CONFIG_WLAN_VENDOR_ZYDAS is not set
 # CONFIG_WLAN_VENDOR_QUANTENNA is not set
+# CONFIG_MAC80211_HWSIM is not set
+# CONFIG_USB_NET_RNDIS_WLAN is not set
+# CONFIG_VIRT_WIFI is not set
 # CONFIG_CNSS2_DEBUG is not set
 # CONFIG_WAN is not set
 CONFIG_IEEE802154_DRIVERS=y
@@ -5338,9 +5342,15 @@ CONFIG_VHOST_VSOCK=y
 # CONFIG_GREYBUS is not set
 # CONFIG_COMEDI is not set
 CONFIG_STAGING=y
+# CONFIG_PRISM2_USB is not set
 # CONFIG_RTL8192U is not set
 # CONFIG_RTLLIB is not set
+# CONFIG_RTL8723BS is not set
+# CONFIG_R8712U is not set
+# CONFIG_R8188EU is not set
 # CONFIG_RTS5208 is not set
+# CONFIG_VT6655 is not set
+# CONFIG_VT6656 is not set
 
 #
 # IIO staging drivers
@@ -5420,6 +5430,7 @@ CONFIG_SAMSUNG_FREECESS=y
 # CONFIG_XIL_AXIS_FIFO is not set
 # CONFIG_FIELDBUS_DEV is not set
 # CONFIG_QLGE is not set
+# CONFIG_WFX is not set
 # CONFIG_GOLDFISH is not set
 # CONFIG_CHROME_PLATFORMS is not set
 # CONFIG_MELLANOX_PLATFORM is not set
@@ -5540,7 +5551,7 @@ CONFIG_IOMMU_DMA=y
 # CONFIG_QCOM_IOMMU is not set
 # CONFIG_VIRTIO_IOMMU is not set
 # CONFIG_QCOM_IOMMU_UTIL is not set
-
+CONFIG_LAZY_INITCALL=y
 #
 # Remoteproc drivers
 #
@@ -6417,7 +6428,6 @@ CONFIG_SEC_QC_NR_CPUS=8
 # CONFIG_SEC_QC_RDX_BOOTDEV is not set
 # CONFIG_SEC_EXT_THERMAL_MONITOR is not set
 # CONFIG_SEC_PM_LOG is not set
-CONFIG_HDM=m
 # CONFIG_SWITCH is not set
 # CONFIG_SENSORS is not set
 # CONFIG_ADSP_FACTORY is not set
@@ -6435,11 +6445,6 @@ CONFIG_HDM=m
 # USB common vbus notifier configs
 #
 # CONFIG_VBUS_NOTIFIER is not set
-
-#
-# Samsung STI Options
-#
-# CONFIG_SEC_STI is not set
 # CONFIG_SEC_AUTO_INPUT is not set
 
 #
@@ -6509,65 +6514,6 @@ CONFIG_KPERFMON_BUILD=y
 # CONFIG_PDIC_NOTIFIER is not set
 # CONFIG_PDIC_POLICY is not set
 # CONFIG_USB_ARCH_EXYNOS is not set
-
-#
-# Samsung ABC Options
-#
-
-#
-# Samsung ABC Common Options
-#
-
-#
-# Samsung ABC Spec manager type1 options
-#
-
-#
-# Samsung ABC MOTTO Options
-#
-
-#
-# Samsung ABC_COMMON KUNIT Options
-#
-
-#
-# Samsung ABC Hub Options
-#
-
-#
-# Samsung ABC Hub Core Options
-#
-
-#
-# Samsung ABC Hub Booting Time Check Options
-#
-
-#
-# Samsung ABC Hub Booting Time Check eng mode Options
-#
-
-#
-# Samsung ABC_HUB KUNIT Options
-#
-
-#
-# Samsung ABC Hub Connect Detect for ABC HUB
-#
-
-#
-# Samsung ABC Hub Connect Detect Kunit Test FEATURE
-#
-# CONFIG_SEC_ABC_DETECT_KUNIT is not set
-
-#
-# Samsung ABC Hub Connect Detect FEATURE
-#
-# CONFIG_SEC_ABC_DETECT_CONN is not set
-
-#
-# Samsung ABC Hub Connect Detect for QCOM, MTK
-#
-# CONFIG_QCOM_SEC_ABC_DETECT is not set
 # CONFIG_SEND_PDMSG_IN_PPS_REQUEST_WORK is not set
 # CONFIG_INPUT_CS40L26_I2C is not set
 # CONFIG_INPUT_CS40L26_SPI is not set
@@ -7678,3 +7624,32 @@ CONFIG_ARCH_USE_MEMTEST=y
 # CONFIG_RQ_STAT_SHOW is not set
 # CONFIG_SCHED_POWER_OPTIMIZE is not set
 # end of QTI WALT based scheduler features
+
+#
+# Techpack Drivers
+#
+CONFIG_RMNET_CORE=m
+CONFIG_RMNET_CTL=m
+CONFIG_RMNET_APS=m
+CONFIG_RMNET_OFFLOAD=m
+CONFIG_RMNET_PERF=m
+CONFIG_RMNET_PERF_TETHER=m
+CONFIG_RMNET_SCH=m
+CONFIG_RMNET_SHS=m
+CONFIG_RMNET_WLAN=m
+# CONFIG_I2C_RTC6226_QCA is not set
+# CONFIG_MSM_BT_POWER is not set
+# CONFIG_BTFM_CODEC is not set
+# CONFIG_CNSS_OUT_OF_TREE is not set
+# CONFIG_CNSS_GENL is not set
+# CONFIG_WCNSS_MEM_PRE_ALLOC is not set
+# CONFIG_CNSS_UTILS is not set
+# CONFIG_CNSS_QMI_SVC is not set
+# CONFIG_CNSS_PLAT_IPC_QMI_SVC is not set
+# CONFIG_ICNSS2 is not set
+
+#
+# Qualcomm Atheros CLD WLAN module
+#
+# CONFIG_QCA_CLD_WLAN is not set
+# end of Techpack Drivers
