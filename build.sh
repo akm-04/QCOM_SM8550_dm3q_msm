@@ -29,7 +29,7 @@ echo -e " $yellow #####|       top of the script to enable KernelSU patches   |#
 
 # ---------------------------------------------------------------------------------------------------------------- #
 # ---------------------------| EXPORTS and Directory Setup |------------------------------------------------------ #
-KERNEL_DEFCONFIG=gki_defconfig  # Looks for defconfig in arch/<exported_arch>/configs/
+KERNEL_DEFCONFIG=old-gki_defconfig  # Looks for defconfig in arch/<exported_arch>/configs/
 ANYKERNEL3_DIR=$PWD/AnyKernel3/ # Required by the function zip_kernel
 AK3_REPO="https://github.com/akm-04/AnyKernel3.git"
 AK3_BRANCH="dm3q"
